@@ -1,18 +1,23 @@
-import Navbar from "./Components/NavBar/Navbar.js";
-import './App.css'
-import Banner from "./Components/Banner/Banner.js";
-import RowPost from "./Components/RowPost/RowPost.js";
-import {BrowserRouter as Router, Route } from "react-router-dom"
+import Navbar from "./Components/NavBar/Navbar";
+import "./App.css";
+import Home from "./Components/Home/Home";
+import { Route, Routes } from "react-router-dom";
+import React from "react";
+import TVShows from "./Components/TVShows/TVShows";
+import Movies from "./Components/Movies/Movies";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-      <Banner/>
-      <RowPost title="Netflix Originals"/>
-      <RowPost title="Actions" isSmall/>
-    </div>
-    
+    <div>
+    <Navbar />
+    <main>
+      <Routes>
+        <Route  path="/" exact element={<Home />} />
+        <Route  path="/tvshows" exact element={<TVShows />} />
+        <Route  path="/movies" exact element={<Movies />} />
+      </Routes>
+    </main>
+  </div>
   );
 }
 

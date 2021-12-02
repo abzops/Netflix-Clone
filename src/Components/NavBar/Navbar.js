@@ -1,6 +1,6 @@
 import React, { useRef,useEffect,useState} from 'react'
 import "./NavBar.css"
-
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
@@ -21,6 +21,14 @@ function NavBar() {
     return (
         <div className="navbar" ref={ref}>
             <img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png" alt="Netflix" />
+
+            <Link className='link1' to="/">Home</Link>
+            <Link  to="/tvshows">TV Shows</Link>
+            <Link  to="/movies">Movies</Link>
+            <Link  to="/new&popular">New & Popular</Link>
+            <Link  to="/mylist">My List</Link>
+
+
             <img className="avatar"  onClick={()=>setShow(!show)} src="https://www.yorkoptometryclinic.ca/images/img_avatar.png" alt="" />
             {
                 show?
