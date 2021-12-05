@@ -7,7 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 function Banner() {
+  const style = "none";
   const [movie, setMovie] = useState("");
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     axios
@@ -26,7 +28,8 @@ function Banner() {
   }, []);
 
   const [urlId, setUrlId] = useState("");
-  const [hide, setHide] = useState(true)
+  const all = () => {handleMovie(movie.id);setShow(!show)};
+
   const handleMovie = (id) => {
     //console.log(id);
     axios
@@ -44,7 +47,7 @@ function Banner() {
       autoplay: 1,
     },
   };
-  
+
   return (
     <div
       className="banner"
@@ -55,29 +58,31 @@ function Banner() {
       <div className="content">
         <h1 className="title">{movie.title}</h1>
         <div className="buttons">
-          <button onClick={() => handleMovie(movie.id)} className="button">
+          <button onClick={() => all()} className="button">
             Play
           </button>
           <button className="button">My List</button>
         </div>
-        {
-          hide?<h1>djks.zxfc jvdfgmzbxnc dhfmcxnzbdfsm</h1>:null
-        }
-        
-        {urlId && (
-          <YouTube videoId={urlId.key} opts={opts} className="YouTube" />
-        )}
-        {urlId && (
-          <FontAwesomeIcon onClick={()=>setHide(false)} icon={faTimes} className="icons" size="3x" />
-        )}
+        {show ? (
+          <div className="trailer">
+            {urlId && (
+              <YouTube videoId={urlId.key} opts={opts} className="YouTube" />
+            )}
+            {urlId && (
+              <FontAwesomeIcon
+                onClick={() => setShow(!show)}
+                icon={faTimes}
+                className="icons"
+                size="3x"
+              />
+            )}
+          </div>
+        ) : null}
         <h1 className="description">{movie.overview}</h1>
       </div>
       <div className="fade"></div>
     </div>
   );
 }
-
-
-
 
 export default Banner;
